@@ -2,8 +2,11 @@ package br.senai.sp.jandira.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Conta {
+
+    Scanner scanner = new Scanner(System.in);
 
     private String agencia = "1258-X";
     private int numeroConta;
@@ -12,6 +15,14 @@ public class Conta {
     private Cliente cliente;
 
     List<Conta> listConta = new ArrayList<>();
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 
     public Conta pesquisarConta(long cpf){
         for (Conta conta: listConta) {
@@ -71,6 +82,38 @@ public class Conta {
         }
 
     }
+
+    public void realizarTransferencia(Conta contaUser, Conta contaDestinatario) {
+
+        System.out.println("Informe o valor para transferencia: ");
+        double valorTransferencia = scanner.nextDouble();
+        scanner.nextLine();
+
+        double saldoDisponivel = contaUser.getSaldo();
+
+        if (saldoDisponivel >= valorTransferencia){
+            saldoDisponivel -= valorTransferencia;
+
+            contaUser.setSaldo(saldoDisponivel);
+
+            double saldoDestinatario = contaDestinatario.getSaldo();
+
+            saldoDestinatario += valorTransferencia;
+            contaDestinatario.setSaldo(saldoDestinatario);
+
+            System.out.println("Transferencia realizada com sucesso");
+        } else {
+            System.out.println("Saldo não disponivel...");
+        }
+
+
+
+
+    }
+
+
+
+
 
 
 

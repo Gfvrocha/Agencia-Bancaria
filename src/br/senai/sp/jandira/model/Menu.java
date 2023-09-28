@@ -112,7 +112,23 @@ public class Menu {
 
                 case 6:
 
-                    System.out.println("Feature in Development");
+                    System.out.print("Informe o CPF do Titular: ");
+                    long cpfUser = scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.println("Informe o CPF do Destinatario: ");
+                    long cpfDestinatario = scanner.nextLong();
+                    scanner.nextLine();
+
+                    Conta contaUser = referenciaConta.pesquisarConta(cpfUser);
+                    Conta contaDestinatario = referenciaConta.pesquisarConta(cpfDestinatario);
+
+                    if (contaUser != null && contaDestinatario != null) {
+                        referenciaConta.realizarTransferencia(contaUser, contaDestinatario);
+                    }else {
+                        System.out.println("Por gentileza verifique as informações digitadas...");
+
+                    }
+
 
                     break;
 
