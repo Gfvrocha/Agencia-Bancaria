@@ -21,7 +21,8 @@ public class Menu {
             System.out.println("3 - Consultar Saldo");
             System.out.println("4 - Realizar Deposito");
             System.out.println("5 - Realizar Saque");
-            System.out.println("6 - Sair");
+            System.out.println("6 - Realizar Transferencia");
+            System.out.println("7 - Sair");
             System.out.println("=0=0=0=0=0=0=0=0=0=0=0=");
 
             int optionUser = scanner.nextInt();
@@ -58,6 +59,31 @@ public class Menu {
                     break;
 
                 case 6:
+                    System.out.println("Informe a sua Agencia: " + conta.getAgencia());
+                    System.out.println("Informe a sua Conta: " + conta.getNumeroConta());
+                    System.out.println("Seu saldo atual em conta é de R$ " + conta.getSaldo());
+
+
+                    System.out.println("=0=0= ---- Dados do Destinatario ---- =0=0= ");
+
+                    System.out.println("Informe a Agencia do destinatario: " + conta.getAgencia2());
+                    System.out.println("Informe a Conta do destinatario: " + conta.getNumeroConta2());
+                    System.out.println("Informe o valor para Transferencia: ");
+                    double valorTransferencia = scanner.nextDouble();
+
+
+                    if (conta.getSaldo() >= valorTransferencia) {
+                        System.out.println("Tranferencia no valor de R$" + valorTransferencia + " finalizado com sucesso!");
+                        double saldoAtualizado = conta.getSaldo() - valorTransferencia;
+                        System.out.println("Seu saldo atual é de R$ " + saldoAtualizado);
+
+                    } else {
+                        System.out.println("Por gentileza, atualize o valor.");
+                        System.out.println("Seu saldo atual em conta é de R$ " + conta.getSaldo());
+                    }
+                    break;
+
+                case 7:
                     exit = true;
                     break;
 
